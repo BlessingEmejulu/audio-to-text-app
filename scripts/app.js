@@ -1,7 +1,8 @@
 import appState from './state.js';
 import { checkSpeechRecognitionSupport } from './recorder.js';
 import { loadNotes } from './notes.js';
-import { setupEventListeners, setupMobileView } from './events.js';
+import { setupEventListeners } from './events.js';
+import { setupMobileView } from './utils.js';
 
 // Main application initialization
 function init() {

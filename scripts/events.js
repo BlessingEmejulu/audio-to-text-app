@@ -4,7 +4,8 @@ import { toggleMobileMenu, setupMobileView } from './utils.js';
 import { toggleRecording } from './recorder.js';
 import { 
     createNewNote, confirmNewNote, loadNotes, 
-    deleteNote, editNoteTitle, saveNotes 
+    deleteNote, editNoteTitle, saveNotes, 
+    renderNotesList 
 } from './notes.js';
 import { 
     formatText, saveCurrentNote, generateSummary, 

@@ -2,6 +2,7 @@ import elements from './dom.js';
 import appState from './state.js';
 import { formatDate, showToast } from './utils.js';
 import { updateCurrentNoteHeader } from './editor.js';
+import { showModal, hideModal } from './modals.js';
 
 // Note management functions
 export function loadNotes() {
