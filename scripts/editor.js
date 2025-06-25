@@ -1,6 +1,7 @@
 import elements from './dom.js';
 import appState from './state.js';
 import { formatDate, showToast } from './utils.js';
+import { saveNotes } from './notes.js';
 
 // Transcript editor functions
 export function appendToEditor(text) {
