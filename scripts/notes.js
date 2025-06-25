@@ -60,6 +60,23 @@ export function renderNotesList() {
         
         elements.notesList.appendChild(noteElement);
     });
+
+    // Attach event listeners to edit and delete buttons
+    elements.notesList.querySelectorAll('.note-item-btn.edit').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const noteId = btn.dataset.id;
+            editNoteTitle(noteId);
+            e.stopPropagation();
+        });
+    });
+
+    elements.notesList.querySelectorAll('.note-item-btn.delete').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const noteId = btn.dataset.id;
+            deleteNote(noteId);
+            e.stopPropagation();
+        });
+    });
 }
 
 export function editNoteTitle(noteId) {
