@@ -162,40 +162,42 @@ export function saveCurrentNote() {
     showToast('Note saved successfully', 'success');
 }
 
-export function generateSummary() {
+export async function generateSummary() {
     if (!appState.currentNote) {
         showToast('No note selected to summarize', 'error');
         return;
     }
-    
     const content = elements.transcriptEditor.innerText || elements.transcriptEditor.textContent;
     if (!content.trim()) {
         showToast('No content to summarize', 'error');
         return;
     }
-    
-    // Mock AI summary - in a real app, this would call an API
     showToast('Generating AI summary...', 'info');
-    
-    // Simulate API delay
-    setTimeout(() => {
-        // Simple summarization logic for demo purposes
-        const sentences = content.match(/[^\.!\?]+[\.!\?]+/g) || [];
-        const importantSentences = sentences.filter((_, i) => i % 3 === 0).slice(0, 5);
-        const summary = importantSentences.join(' ') || "Summary couldn't be generated.";
-        
-        elements.aiSummaryContent.innerHTML = summary;
-        elements.aiSummary.style.display = 'block';
-        
-        // Save summary to note
-        const note = appState.notes.find(n => n.id === appState.currentNote.id);
-        if (note) {
-            note.summary = summary;
-            saveNotes();
+    elements.aiSummaryContent.innerHTML = '<em>Generating summary...</em>';
+    elements.aiSummary.style.display = 'block';
+    try {
+        const response = await fetch('http://localhost:3000/ai-summary', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ transcript: content })
+        });
+        const data = await response.json();
+        if (data.success && data.summary) {
+            elements.aiSummaryContent.innerHTML = data.summary;
+            // Save summary to note
+            const note = appState.notes.find(n => n.id === appState.currentNote.id);
+            if (note) {
+                note.summary = data.summary;
+                saveNotes();
+            }
+            showToast('Summary generated', 'success');
+        } else {
+            throw new Error(data.message || 'Failed to generate summary');
         }
-        
-        showToast('Summary generated', 'success');
-    }, 2000);
+    } catch (error) {
+        elements.aiSummaryContent.innerHTML = '<span style="color:red">Error: ' + error.message + '</span>';
+        showToast('AI summary failed: ' + error.message, 'error');
+    }
 }
 
 export function copySummary() {

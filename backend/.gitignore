@@ -1,2 +1,4 @@
 # Environment variables
 .env
+
+google-credentials.json

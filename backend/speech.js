@@ -330,6 +330,23 @@ async function testGoogleCloudConnection() {
 // Test connection on startup
 testGoogleCloudConnection();
 
+// AI Summary endpoint using Gemini
+const { getGeminiSummary } = require('./aiSummary');
+
+app.post('/ai-summary', async (req, res) => {
+  try {
+    const { transcript } = req.body;
+    if (!transcript || typeof transcript !== 'string') {
+      return res.status(400).json({ success: false, message: 'Transcript is required.' });
+    }
+    const summary = await getGeminiSummary(transcript);
+    res.json({ success: true, summary });
+  } catch (error) {
+    // Always return a JSON error response
+    res.status(500).json({ success: false, message: error.message || 'Unknown error' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`HTTP server running on port ${PORT}`);
   console.log(`Frontend available at http://localhost:${PORT}`);
