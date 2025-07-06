@@ -7,7 +7,6 @@ export function showModal(modal) {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
-
 export function hideModal(modal) {
     modal.classList.remove('active');
     document.body.style.overflow = '';
