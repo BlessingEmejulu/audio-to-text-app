@@ -1,4 +1,4 @@
-        :root {
+:root {
             --primary: #4361ee;
             --primary-light: #4895ef;
             --secondary: #3f37c9;
@@ -362,7 +362,7 @@
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            min-height: 0;
+            min-height: 0; /* This is important for flex children to shrink properly */
         }
 
         .current-note-header {
@@ -419,6 +419,7 @@
             outline: none;
             overflow-y: auto;
             min-height: 200px;
+            max-height: 400px; /* or whatever fits your layout */
             background-color: #fcfdff;
             -webkit-overflow-scrolling: touch;
             line-height: 1.5;

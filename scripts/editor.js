@@ -27,7 +27,7 @@ export function appendToEditor(text) {
     elements.transcriptEditor.innerHTML += newParagraph;
     
     // Scroll to bottom to show new content
-    elements.transcriptEditor.scrollTop = elements.transcriptEditor.scrollHeight;
+    elements.transcriptEditor.scrollTop = 0;
     
     console.log('Editor content after append:', elements.transcriptEditor.innerHTML);
     
