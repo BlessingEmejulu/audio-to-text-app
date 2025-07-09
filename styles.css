@@ -411,7 +411,6 @@
         }
 
         .transcript-editor {
-            flex-grow: 1;
             border: 1px solid #e0e0e0;
             border-radius: var(--border-radius);
             padding: 15px;
@@ -419,11 +418,12 @@
             outline: none;
             overflow-y: auto;
             min-height: 200px;
-            max-height: 400px; /* or whatever fits your layout */
+            max-height: 400px;
             background-color: #fcfdff;
             -webkit-overflow-scrolling: touch;
             line-height: 1.5;
             font-size: 15px;
+            box-sizing: border-box;
         }
 
         .transcript-editor img {

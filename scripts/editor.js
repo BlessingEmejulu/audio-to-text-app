@@ -5,36 +5,15 @@ import { saveNotes } from './notes.js';
 
 // Transcript editor functions
 export function appendToEditor(text) {
-    console.log('appendToEditor called with text:', text);
-    console.log('transcriptEditor element:', elements.transcriptEditor);
-    
-    if (!text || !text.trim()) {
-        console.log('No text to append');
-        return;
-    }
-    
-    if (!elements.transcriptEditor) {
-        console.error('transcriptEditor element not found!');
-        return;
-    }
-    
-    // Save cursor position
-    const cursorPosition = saveCursorPosition();
-    
-    // Append text
-    const newParagraph = `<p>${text.trim()}</p>`;
-    console.log('Adding paragraph:', newParagraph);
-    elements.transcriptEditor.innerHTML += newParagraph;
-    
-    // Scroll to bottom to show new content
-    elements.transcriptEditor.scrollTop = 0;
-    
-    console.log('Editor content after append:', elements.transcriptEditor.innerHTML);
-    
-    // Restore cursor position
-    if (cursorPosition) {
-        restoreCursorPosition(cursorPosition);
-    }
+    if (!text || !text.trim()) return;
+    if (!elements.transcriptEditor) return;
+
+    const p = document.createElement('p');
+    p.textContent = text.trim();
+    elements.transcriptEditor.appendChild(p);
+
+    // Scroll to bottom if you want
+    elements.transcriptEditor.scrollTop = elements.transcriptEditor.scrollHeight;
 }
 
 // Test function to verify editor works
