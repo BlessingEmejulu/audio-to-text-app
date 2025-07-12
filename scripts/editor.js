@@ -5,6 +5,7 @@ import { saveNotes } from './notes.js';
 
 // Transcript editor functions
 export function appendToEditor(text) {
+    console.log('Appending:', text, elements.transcriptEditor);
     if (!text || !text.trim()) return;
     if (!elements.transcriptEditor) return;
 
@@ -12,7 +13,6 @@ export function appendToEditor(text) {
     p.textContent = text.trim();
     elements.transcriptEditor.appendChild(p);
 
-    // Scroll to bottom if you want
     elements.transcriptEditor.scrollTop = elements.transcriptEditor.scrollHeight;
 }
 
