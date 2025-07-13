@@ -684,6 +684,158 @@ header {
     color: white;
 }
 
+/* Support Modal Styles */
+.support-message {
+    text-align: center;
+    margin-bottom: 25px;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9ff 0%, #e6f3ff 100%);
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--accent);
+}
+
+.support-message p {
+    font-size: 16px;
+    color: var(--text);
+    margin: 0;
+}
+
+.support-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.support-option {
+    padding: 20px;
+    border-radius: var(--border-radius);
+    border: 1px solid #e0e8ff;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.support-option:hover {
+    box-shadow: 0 4px 12px rgba(67, 97, 238, 0.1);
+    border-color: var(--primary);
+}
+
+.support-option h4 {
+    margin-bottom: 15px;
+    color: var(--primary);
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.support-option h4 i {
+    width: 20px;
+    text-align: center;
+}
+
+.bank-details {
+    display: grid;
+    gap: 12px;
+}
+
+.bank-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: #f8faff;
+    border-radius: 8px;
+    border: 1px solid #e0e8ff;
+}
+
+.bank-field label {
+    font-weight: 500;
+    color: var(--text);
+    font-size: 14px;
+}
+
+.bank-value {
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 14px;
+    padding: 4px 8px;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid #d0d7ff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.bank-value:hover {
+    background: #e0e8ff;
+    transform: translateY(-1px);
+}
+
+.paypal-btn {
+    width: 100%;
+    background: #0070ba;
+    color: white;
+    justify-content: center;
+}
+
+.paypal-btn:hover {
+    background: #005ea6;
+}
+
+.coffee-btn {
+    width: 100%;
+    background: #fd0;
+    color: #333;
+    justify-content: center;
+}
+
+.coffee-btn:hover {
+    background: #ffdd44;
+}
+
+.support-footer {
+    text-align: center;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e8ff;
+}
+
+.support-footer p {
+    color: var(--text-light);
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Mobile support styles */
+@media (max-width: 768px) {
+    .support-options {
+        gap: 15px;
+    }
+    
+    .support-option {
+        padding: 15px;
+    }
+    
+    .bank-field {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+    
+    .bank-value {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Copy to clipboard animation */
+.bank-value.copied {
+    background: #4caf50;
+    color: white;
+    transform: scale(1.05);
+}
+
 /* Mobile-specific styles */
 @media (max-width: 768px) {
     .container {
@@ -845,4 +997,25 @@ button,
     input:focus {
         font-size: 16px;
     }
+}
+
+#supportBtn {
+    position: relative;
+    overflow: hidden;
+}
+
+#supportBtn i {
+    transition: all 0.3s ease;
+}
+
+#supportBtn:hover i {
+    color: #ff4757;
+    transform: scale(1.2);
+    animation: heartbeat 1s infinite;
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1.2); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1.2); }
 }

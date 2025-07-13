@@ -38,6 +38,9 @@
                 <button class="btn btn-outline" id="exportBtn">
                     <i class="fas fa-file-export"></i> <span class="hide-on-mobile">Export</span>
                 </button>
+                <button class="btn btn-accent" id="supportBtn">
+                    <i class="fas fa-heart"></i> <span class="hide-on-mobile">Support Dev</span>
+                </button>
                 <button class="btn btn-primary" id="newNoteBtn">
                     <i class="fas fa-plus"></i> <span class="hide-on-mobile">New Note</span>
                 </button>
@@ -231,6 +234,63 @@
             <div class="modal-footer">
                 <button class="btn btn-outline" id="cancelExport">Cancel</button>
                 <button class="btn btn-primary" id="confirmExport">Export</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Support Modal -->
+    <div class="modal" id="supportModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">💝 Support the Developer</h3>
+                <span class="modal-close" id="closeSupportModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="support-message">
+                    <p>Thank you for using ForWord! If you find this app helpful, you can support its development:</p>
+                </div>
+                
+                <div class="support-options">
+                    <div class="support-option">
+                        <h4><i class="fas fa-university"></i> Bank Transfer</h4>
+                        <div class="bank-details">
+                            <div class="bank-field">
+                                <label>Account Name:</label>
+                                <div class="bank-value" id="accountName">Your Name Here</div>
+                            </div>
+                            <div class="bank-field">
+                                <label>Account Number:</label>
+                                <div class="bank-value" id="accountNumber">1234567890</div>
+                            </div>
+                            <div class="bank-field">
+                                <label>Bank Name:</label>
+                                <div class="bank-value" id="bankName">Your Bank Name</div>
+                            </div>
+                            <div class="bank-field">
+                                <label>Routing Number:</label>
+                                <div class="bank-value" id="routingNumber">123456789</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="support-option">
+                        <h4><i class="fab fa-paypal"></i> PayPal</h4>
+                        <button class="btn btn-primary paypal-btn" onclick="window.open('https://paypal.me/yourusername', '_blank')">
+                            <i class="fab fa-paypal"></i> Send via PayPal
+                        </button>
+                    </div>
+
+                    <div class="support-option">
+                        <h4><i class="fas fa-coffee"></i> Buy me a Coffee</h4>
+                        <button class="btn btn-accent coffee-btn" onclick="window.open('https://buymeacoffee.com/yourusername', '_blank')">
+                            <i class="fas fa-coffee"></i> Buy me a Coffee
+                        </button>
+                    </div>
+                </div>
+
+                <div class="support-footer">
+                    <p>Every contribution helps keep ForWord free and improving! 🚀</p>
+                </div>
             </div>
         </div>
     </div>

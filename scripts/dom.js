@@ -35,7 +35,14 @@ const elements = {
     currentNoteTitle: document.getElementById('currentNoteTitle'),
     currentNoteCourse: document.getElementById('currentNoteCourse'),
     currentNoteDate: document.getElementById('currentNoteDate'),
-    imageUpload: document.getElementById('imageUpload')
+    imageUpload: document.getElementById('imageUpload'),
+    supportBtn: document.getElementById('supportBtn'),
+    supportModal: document.getElementById('supportModal'),
+    closeSupportModal: document.getElementById('closeSupportModal'),
+    accountName: document.getElementById('accountName'),
+    accountNumber: document.getElementById('accountNumber'),
+    bankName: document.getElementById('bankName'),
+    routingNumber: document.getElementById('routingNumber')
 };
 
 export default elements;
