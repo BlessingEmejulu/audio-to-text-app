@@ -23,6 +23,7 @@
     <link rel="icon" href="/icons/favicon-32x32.png" sizes="32x32">
     <link rel="icon" href="/icons/android-chrome-192x192.png" sizes="192x192">
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -35,14 +36,17 @@
                 <span class="gradient-text">ForWord</span>
             </div>
             <div class="user-actions">
-                <button class="btn btn-outline" id="exportBtn">
-                    <i class="fas fa-file-export"></i> <span class="hide-on-mobile">Export</span>
-                </button>
                 <button class="btn btn-accent" id="supportBtn">
-                    <i class="fas fa-heart"></i> <span class="hide-on-mobile">Support Dev</span>
+                    <i class="fas fa-heart"></i> 
+                    <span class="hide-on-mobile">Support Dev</span>
+                </button>
+                <button class="btn btn-outline" id="exportBtn">
+                    <i class="fas fa-file-export"></i> 
+                    <span class="hide-on-mobile">Export</span>
                 </button>
                 <button class="btn btn-primary" id="newNoteBtn">
-                    <i class="fas fa-plus"></i> <span class="hide-on-mobile">New Note</span>
+                    <i class="fas fa-plus"></i> 
+                    <span class="hide-on-mobile">New Note</span>
                 </button>
             </div>
         </header>
@@ -198,15 +202,18 @@
             </div>
             <div class="form-group">
                 <label class="form-label">Format</label>
-                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                    <button class="btn btn-outline export-format-btn active" data-format="pdf">
-                        <i class="fas fa-file-pdf"></i> PDF
+                <div class="export-format-options">
+                    <button class="export-format-btn active" data-format="txt">
+                        <i class="fas fa-file-text"></i> Text (.txt)
                     </button>
-                    <button class="btn btn-outline export-format-btn" data-format="docx">
-                        <i class="fas fa-file-word"></i> Word
+                    <button class="export-format-btn" data-format="html">
+                        <i class="fas fa-file-code"></i> HTML (.html)
                     </button>
-                    <button class="btn btn-outline export-format-btn" data-format="txt">
-                        <i class="fas fa-file-alt"></i> Text
+                    <button class="export-format-btn" data-format="pdf">
+                        <i class="fas fa-file-pdf"></i> PDF (.pdf)
+                    </button>
+                    <button class="export-format-btn" data-format="docx">
+                        <i class="fas fa-file-word"></i> Word (.rtf)
                     </button>
                 </div>
             </div>

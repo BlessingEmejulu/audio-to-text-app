@@ -9,12 +9,12 @@ export function formatDate(dateString) {
 
 export function showToast(message, type = 'info') {
     elements.toast.textContent = message;
-    elements.toast.style.backgroundColor = type === 'error' ? '#ff6b6b' : 
-                                       type === 'success' ? '#4caf50' : 
-                                       type === 'info' ? '#4361ee' : '#333';
-    
+    elements.toast.style.backgroundColor = type === 'error' ? '#ff6b6b' :
+        type === 'success' ? '#4caf50' :
+            type === 'info' ? '#4361ee' : '#333';
+
     elements.toast.classList.add('show');
-    
+
     setTimeout(() => {
         elements.toast.classList.remove('show');
     }, 3000);
