@@ -1022,10 +1022,10 @@ button,
 
 /* Mobile priority - support button always visible */
 @media (max-width: 768px) {
-    .user-actions {
+    /* .user-actions {
         flex-wrap: wrap;
         gap: 8px;
-    }
+    } */
     
     #supportBtn {
         order: 1; /* Always show first on mobile */
@@ -1060,10 +1060,10 @@ button,
 
 /* Very small screens - stack vertically */
 @media (max-width: 480px) {
-    .user-actions {
+    /* .user-actions {
         flex-direction: column;
         gap: 8px;
-    }
+    } */
     
     #supportBtn {
         order: 1;
@@ -1274,134 +1274,5 @@ button,
     left: 100%;
 }
 
-/* Mobile user actions - keep original button styling */
-@media (max-width: 768px) {
-    .user-actions {
-        display: flex;
-        flex-direction: row;
-        gap: 8px;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-    /* Support button - keep btn-accent styling */
-    #supportBtn {
-        order: 1;
-        flex: 0 0 auto;
-        min-width: 50px;
-        max-width: 55px;
-        padding: 10px 8px;
-        justify-content: center;
-        /* Original btn-accent styles are preserved */
-    }
-    
-    /* Export button - keep btn-outline styling */
-    #exportBtn {
-        order: 2;
-        flex: 1;
-        min-width: 70px;
-        padding: 10px 12px;
-        justify-content: center;
-        /* Original btn-outline styles are preserved */
-    }
-    
-    /* New Note button - keep btn-primary styling */
-    #newNoteBtn {
-        order: 3;
-        flex: 1;
-        min-width: 70px;
-        padding: 10px 12px;
-        justify-content: center;
-        /* Original btn-primary styles are preserved */
-    }
-    
-    /* Only hide text on mobile */
-    .hide-on-mobile {
-        display: none !important;
-    }
-    
-    /* Ensure icons are properly sized */
-    .user-actions .btn i {
-        font-size: 16px;
-        margin: 0;
-    }
-}
 
-/* Very small screens - keep same styling */
-@media (max-width: 480px) {
-    .user-actions {
-        flex-direction: row;
-        gap: 6px;
-    }
-    
-    #supportBtn {
-        min-width: 45px;
-        max-width: 50px;
-        padding: 10px 6px;
-    }
-    
-    #exportBtn,
-    #newNoteBtn {
-        flex: 1;
-        min-width: 65px;
-        padding: 10px 10px;
-    }
-}
 
-/* Touch-friendly sizing */
-@media (max-width: 768px) {
-    .user-actions .btn {
-        min-height: 44px;
-        touch-action: manipulation;
-    }
-}
-
-/* Remove conflicting styles */
-/* DELETE these conflicting mobile styles that override button classes */
-/*
-@media (max-width: 768px) {
-    #supportBtn {
-        order: 1;
-        flex-grow: 1;
-        min-width: 50px;
-        max-width: 60px;
-        padding: 8px 12px;
-        justify-content: center;
-    }
-    
-    #exportBtn {
-        order: 2;
-        flex-grow: 1;
-    }
-    
-    #newNoteBtn {
-        order: 3;
-        flex-grow: 1;
-    }
-}
-*/
-
-/* Mobile - keep buttons side by side */
-@media (max-width: 768px) {
-    .user-actions {
-        display: flex;
-        flex-direction: row; 
-        gap: 2px;
-        align-items: center;
-        flex-wrap: nowrap; /* Prevent wrapping */
-    }
-    
-   
-    /* Hide text on mobile */
-    .hide-on-mobile {
-        display: none !important;
-    }
-}
-
-/* Very small screens - still keep side by side */
-@media (max-width: 480px) {
-    .user-actions {
-        flex-direction: row; /* Keep horizontal */
-        gap: 6px;
-    }
-}
