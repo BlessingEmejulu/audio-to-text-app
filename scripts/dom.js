@@ -41,8 +41,7 @@ const elements = {
     closeSupportModal: document.getElementById('closeSupportModal'),
     accountName: document.getElementById('accountName'),
     accountNumber: document.getElementById('accountNumber'),
-    bankName: document.getElementById('bankName'),
-    routingNumber: document.getElementById('routingNumber')
+    bankName: document.getElementById('bankName')
 };
 
 export default elements;

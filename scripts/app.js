@@ -14,8 +14,8 @@ function init() {
     setupMobileView();
 }
 
-// Initialize app
-document.addEventListener('DOMContentLoaded', () => {
+// Initialize all modules
+function initializeApp() {
     init();
     
     // Initialize PWA
@@ -34,9 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Update with your actual bank details
     updateBankDetails({
-        accountName: "Your Actual Name",
-        accountNumber: "Your Account Number",
-        bankName: "Your Bank Name",
-        routingNumber: "Your Routing Number"
+        accountName: "Nneamaka Blessing Emejulu",
+        accountNumber: "2150313274",
+        bankName: "United Bank For Africa",
     });
-});
+}
+
+// Call initialization when DOM is loaded
+document.addEventListener('DOMContentLoaded', initializeApp);
