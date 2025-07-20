@@ -59,6 +59,14 @@ export function renderNotesList() {
         `;
         
         elements.notesList.appendChild(noteElement);
+        
+       
+        noteElement.addEventListener('click', (e) => {
+            
+            if (e.target.closest('.note-item-actions')) return;
+            
+            loadNote(note.id);
+        });
     });
 
     // Attach event listeners to edit and delete buttons
