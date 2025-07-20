@@ -4,10 +4,9 @@ import { showToast } from './utils.js';
 
 // Bank details configuration
 const bankDetails = {
-    accountName: "Your Full Name",
-    accountNumber: "1234567890",
-    bankName: "Your Bank Name",
-    routingNumber: "123456789"
+    accountName: "Nneamaka Blessing Emejulu",
+    accountNumber: "215032174",
+    bankName: "United Bank For Africa",
 };
 
 // Initialize support functionality
@@ -16,7 +15,6 @@ export function initializeSupport() {
     elements.accountName.textContent = bankDetails.accountName;
     elements.accountNumber.textContent = bankDetails.accountNumber;
     elements.bankName.textContent = bankDetails.bankName;
-    elements.routingNumber.textContent = bankDetails.routingNumber;
 
     // Add click to copy functionality
     addCopyToClipboard();
@@ -71,5 +69,4 @@ export function updateBankDetails(newDetails) {
     elements.accountName.textContent = bankDetails.accountName;
     elements.accountNumber.textContent = bankDetails.accountNumber;
     elements.bankName.textContent = bankDetails.bankName;
-    elements.routingNumber.textContent = bankDetails.routingNumber;
 }
