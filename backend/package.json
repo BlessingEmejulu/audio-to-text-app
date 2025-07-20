@@ -18,8 +18,10 @@
     "@google/genai": "^1.0.0",
     "axios": "^1.10.0",
     "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
+    "dotenv": "^16.6.1",
     "express": "^5.1.0",
+    "express-rate-limit": "^8.0.1",
+    "helmet": "^8.1.0",
     "ws": "^8.18.2"
   }
 }
