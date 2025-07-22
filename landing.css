@@ -905,6 +905,7 @@ a {
     
     .nav-actions {
         gap: 15px;
+        font-size: 0.8rem;
     }
 }
 
