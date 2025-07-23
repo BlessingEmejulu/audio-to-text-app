@@ -907,6 +907,21 @@ a {
         gap: 15px;
         font-size: 0.8rem;
     }
+
+    .btn {
+    padding: 6px 12px;
+    border-radius: 25px;
+    font-weight: 500;
+    gap: 4px;
+    }
+
+    .stat-number {
+    font-size: 1.5rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+}
 }
 
 @media (max-width: 576px) {
