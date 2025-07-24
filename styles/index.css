@@ -389,7 +389,7 @@ header {
     display: flex;
     flex-direction: column;
     min-height: 0;
-    /* This is important for flex children to shrink properly */
+   
 }
 
 .current-note-header {
