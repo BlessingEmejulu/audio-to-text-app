@@ -4,6 +4,8 @@
 
 ForWord is a simple web application that converts speech to text and provides AI summaries using Google Cloud Speech-to-Text API and Google's Gemini API. It prioritizes user privacy by not storing audio recordings or transcriptions on its servers. All notes are saved locally in the user's browser.
 
+![Screenshot of the main interface](./icons/forword_landing_page.PNG)
+
 ## Features
 
 -   **Speech-to-Text Conversion:** Converts audio to text using Google Cloud Speech-to-Text API.
@@ -13,8 +15,6 @@ ForWord is a simple web application that converts speech to text and provides AI
 -   **User-Friendly:** Simple and intuitive interface.
 
 ## Screenshots
-
-Include screenshots of the application to give users a visual understanding of the interface and functionality.
 
 ![Screenshot of the main interface](./icons/main_interface_forword.PNG)
 *Main interface showing the recording and transcription area.*
