@@ -16,10 +16,10 @@ ForWord is a simple web application that converts speech to text and provides AI
 
 Include screenshots of the application to give users a visual understanding of the interface and functionality.
 
-![Screenshot of the main interface](link-to-screenshot-1.png)
+![Screenshot of the main interface](./icons/main_interface_forword.PNG)
 *Main interface showing the recording and transcription area.*
 
-![Screenshot of the AI summary feature](link-to-screenshot-2.png)
+![Screenshot of the AI summary feature](./icons/ai_summary_interface.PNG)
 *AI summary generated from the transcribed text.*
 
 ## Technologies Used
