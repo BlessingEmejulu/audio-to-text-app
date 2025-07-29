@@ -1,6 +1,6 @@
 {
-  "name": "ForWord",
-  "short_name": "ForWord",
+  "name": "Forword",
+  "short_name": "Forword",
   "description": "Real-time audio transcription with AI summary",
   "start_url": "/",
   "display": "standalone",
