@@ -50,7 +50,7 @@ ForWord is a simple web application that converts speech to text and provides AI
 
 4.  **Open the application:**
 
-    -   Open `index.html` in your web browser.
+    -   Open `forword.html` in your web browser.
 
 ## Usage
 
