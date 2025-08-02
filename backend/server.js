@@ -12,7 +12,6 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const WS_PORT = process.env.WS_PORT || 8081;
 
-// Safe WebSocket send function - MOVE THIS TO THE TOP
 function safeSend(ws, data) {
   try {
     if (ws.readyState === WebSocket.OPEN) {
@@ -25,7 +24,7 @@ function safeSend(ws, data) {
 
 // Enable CORS for all routes
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://localhost:5500'],
+  origin: ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://localhost:5500','https://audio-to-text-app.onrender.com/'],
   credentials: true
 }));
 
@@ -66,12 +65,25 @@ app.use(generalLimit);
 // Serve frontend files
 app.use(express.static('../'));
 
-const wss = new WebSocketServer({ port: WS_PORT });
+let wss;
+if (process.env.NODE_ENV === 'production') {
+ 
+  const server = app.listen(PORT, () => {
+    console.log(`HTTP/WebSocket server running on port ${PORT}`);
+  });
+  wss = new WebSocketServer({ server });
+} else {
+  
+  app.listen(PORT, () => {
+    console.log(`HTTP server running on port ${PORT}`);
+  });
+  wss = new WebSocketServer({ port: WS_PORT });
+  console.log(`WebSocket server running on port ${WS_PORT}`);
+}
 
 // Initialize Google Cloud Speech client
 const client = new speech.SpeechClient();
 
-console.log(`WebSocket server running on port ${WS_PORT}`);
 console.log('Make sure you have Google Cloud credentials configured');
 
 // Connection tracking
@@ -115,7 +127,7 @@ wss.on('connection', (ws, req) => {
   let streamStartTime = 0;
   let streamKeepAlive = null;
   
-  // ⚡ AUDIO THROTTLING VARIABLES
+  // AUDIO THROTTLING VARIABLES
   let audioChunkCount = 0;
   let audioStartTime = Date.now();
   const MAX_CHUNKS_PER_MINUTE = 600; // Limit audio chunks
@@ -473,12 +485,6 @@ async function testGoogleCloudConnection() {
 
 // Test connection on startup
 testGoogleCloudConnection();
-
-app.listen(PORT, () => {
-  console.log(`HTTP server running on port ${PORT}`);
-  console.log(`Frontend available at http://localhost:${PORT}`);
-  console.log(`Usage stats available at http://localhost:${PORT}/usage-stats`);
-});
 
 // Graceful shutdown handling
 process.on('SIGINT', () => {
