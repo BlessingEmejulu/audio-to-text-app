@@ -24,7 +24,11 @@ function safeSend(ws, data) {
 
 // Enable CORS for all routes
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://localhost:5500','https://audio-to-text-app.onrender.com/'],
+  origin: [
+    'https://audio-to-text-app.onrender.com', 
+    'http://localhost:3000',              
+    'http://127.0.0.1:3000'
+  ],
   credentials: true
 }));
 
