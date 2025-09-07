@@ -16,7 +16,7 @@ export async function getGeminiSummary(transcript) {
   const requestBody = {
     contents: [
       {
-        // role: "user", // Optional, can be added if needed
+        // role: "user"
         parts: [
           { text: `Summarize the following transcript:\n${transcript}` }
         ]

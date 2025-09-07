@@ -210,10 +210,10 @@ wss.on('connection', (ws, req) => {
                     confidence: confidence || 0
                   });
                 } else {
-                  console.log('❌ No alternatives in result');
+                  console.log('No alternatives in result');
                 }
               } else {
-                console.log('❌ No results in response from Google Speech API');
+                console.log('No results in response from Google Speech API');
                 
                 if (data.speechEventType) {
                   console.log('Speech event type:', data.speechEventType);
@@ -297,7 +297,7 @@ wss.on('connection', (ws, req) => {
         });
 
       } else {
-        // ⚡ AUDIO DATA WITH THROTTLING
+        // AUDIO DATA WITH THROTTLING
         audioChunkCount++;
         const elapsed = Date.now() - audioStartTime;
         
@@ -321,12 +321,12 @@ wss.on('connection', (ws, req) => {
         totalAudioBytes += message.length;
         usageStats.totalAudioBytes += message.length;
         
-        console.log(`📊 Audio chunk ${audioDataCounter}: ${message.length} bytes (Total: ${totalAudioBytes} bytes)`);
+        console.log(`Audio chunk ${audioDataCounter}: ${message.length} bytes (Total: ${totalAudioBytes} bytes)`);
         
         if (recognizeStream && isStreamActive) {
           try {
             recognizeStream.write(message);
-            console.log(`✅ Sent chunk ${audioDataCounter} to Google Speech API`);
+            console.log(`Sent chunk ${audioDataCounter} to Google Speech API`);
           } catch (writeError) {
             console.error('Error writing to speech stream:', writeError);
           }
@@ -477,11 +477,11 @@ async function testGoogleCloudConnection() {
     };
     
     const [response] = await client.recognize(testRequest);
-    console.log('✓ Google Cloud Speech API connection successful');
+    console.log('Google Cloud Speech API connection successful');
     console.log('Test response:', response);
     return true;
   } catch (error) {
-    console.error('❌ Google Cloud Speech API connection failed:');
+    console.error('Google Cloud Speech API connection failed:');
     console.error('Error code:', error.code);
     console.error('Error message:', error.message);
     console.error('Error details:', error.details);
@@ -494,11 +494,11 @@ testGoogleCloudConnection();
 
 // Graceful shutdown handling
 process.on('SIGINT', () => {
-  console.log('\n🛑 Received SIGINT, shutting down gracefully...');
+  console.log('\nReceived SIGINT, shutting down gracefully...');
   
   // Close WebSocket server
   wss.close(() => {
-    console.log('✅ WebSocket server closed');
+    console.log('WebSocket server closed');
   });
   
   // Close HTTP server
@@ -506,10 +506,10 @@ process.on('SIGINT', () => {
 });
 
 process.on('SIGTERM', () => {
-  console.log('🛑 Received SIGTERM, shutting down gracefully...');
+  console.log('Received SIGTERM, shutting down gracefully...');
   
   wss.close(() => {
-    console.log('✅ WebSocket server closed');
+    console.log('WebSocket server closed');
   });
   
   process.exit(0);

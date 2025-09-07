@@ -155,7 +155,7 @@ export async function generateSummary() {
     elements.aiSummaryContent.innerHTML = '<em>Generating summary...</em>';
     elements.aiSummary.style.display = 'block';
     try {
-        const response = await fetch('http://localhost:3000/ai-summary', {
+        const response = await fetch('https://api-54wbzdzd5a-uc.a.run.app/ai-summary', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ transcript: content })

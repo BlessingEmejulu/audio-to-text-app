@@ -318,7 +318,7 @@ async function startRecording() {
 
 async function startGoogleSpeechRecording() {
     try {
-        console.log('🎤 Requesting microphone access for Google Speech...');
+        console.log('Requesting microphone access for Google Speech...');
         
         // Get microphone access with specific constraints
         const stream = await navigator.mediaDevices.getUserMedia({ 
@@ -336,14 +336,14 @@ async function startGoogleSpeechRecording() {
         
         // Log audio track info
         const audioTrack = stream.getAudioTracks()[0];
-        console.log('📊 Audio track settings:', audioTrack.getSettings());
-        console.log('📊 Audio track constraints:', audioTrack.getConstraints());
+        console.log('Audio track settings:', audioTrack.getSettings());
+        console.log('Audio track constraints:', audioTrack.getConstraints());
         
         // Create AudioContext for audio processing
         const audioContext = new (window.AudioContext || window.webkitAudioContext)({ 
             sampleRate: 16000 
         });
-        console.log('🔊 Audio context sample rate:', audioContext.sampleRate);
+        console.log('Audio context sample rate:', audioContext.sampleRate);
         
         const source = audioContext.createMediaStreamSource(stream);
         
@@ -381,7 +381,7 @@ async function startGoogleSpeechRecording() {
                 
                 chunkCount++;
                 if (chunkCount % 10 === 0 || hasAudio) { // Log every 10th chunk or when audio detected
-                    console.log(`🎤 Chunk ${chunkCount}: ${hasAudio ? 'AUDIO' : 'silent'} (Max: ${maxAmplitude.toFixed(4)}, RMS: ${rmsAmplitude.toFixed(4)}) - ${int16Data.byteLength} bytes`);
+                    console.log(`Chunk ${chunkCount}: ${hasAudio ? 'AUDIO' : 'silent'} (Max: ${maxAmplitude.toFixed(4)}, RMS: ${rmsAmplitude.toFixed(4)}) - ${int16Data.byteLength} bytes`);
                 }
                 
                 appState.googleSpeechWS.send(int16Data.buffer);
@@ -546,7 +546,7 @@ function stopRecording() {
 
 // Emergency fallback function to force browser speech recognition
 export function emergencyFallbackToBrowser() {
-    console.log('🚨 Emergency fallback to browser speech recognition');
+    console.log('Emergency fallback to browser speech recognition');
     
     // Stop Google Speech completely
     appState.useGoogleSpeech = false;
@@ -588,7 +588,7 @@ export function emergencyFallbackToBrowser() {
 
 // Add browser-only mode function
 export function enableBrowserOnlyMode() {
-    console.log('🔧 Enabling browser-only mode');
+    console.log('Enabling browser-only mode');
     
     // Disable Google Speech completely
     appState.useGoogleSpeech = false;
@@ -629,29 +629,29 @@ export function runFullDiagnostics() {
     console.log('3. Current mode:', appState.useGoogleSpeech ? 'Google Speech API' : 'Browser Speech');
     
     // 4. Check states
-    console.log('4. Recording state:', appState.isRecording ? '🔴 Recording' : '⚪ Stopped');
-    console.log('5. Recognition active:', appState.recognitionActive ? '✅ Active' : '❌ Inactive');
+    console.log('4. Recording state:', appState.isRecording ? 'Recording' : 'Stopped');
+    console.log('5. Recognition active:', appState.recognitionActive ? 'Active' : ' Inactive');
     
     // 5. Test microphone access
     navigator.mediaDevices.getUserMedia({ audio: true })
         .then(() => {
-            console.log('6. Microphone access: ✅ Granted');
+            console.log('6. Microphone access: Granted');
             
             // 6. Test audio context
             try {
                 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                console.log('7. Audio context: ✅ Available, Sample rate:', audioContext.sampleRate);
+                console.log('7. Audio context: Available, Sample rate:', audioContext.sampleRate);
                 audioContext.close();
             } catch (e) {
-                console.log('7. Audio context: ❌ Error:', e.message);
+                console.log('7. Audio context: Error:', e.message);
             }
         })
         .catch(error => {
-            console.log('6. Microphone access: ❌ Denied or error:', error.message);
+            console.log('6. Microphone access: Denied or error:', error.message);
         });
     
     // 7. Recommendations
-    console.log('\n📋 Recommendations:');
+    console.log('\n Recommendations:');
     if (!SpeechRecognition) {
         console.log('- Browser speech recognition not available, Google Speech API required');
     }
@@ -678,7 +678,7 @@ export function testMicrophone() {
         } 
     })
     .then(stream => {
-        console.log('✅ Microphone access granted');
+        console.log('Microphone access granted');
         
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
         const source = audioContext.createMediaStreamSource(stream);
@@ -712,18 +712,18 @@ export function testMicrophone() {
             if (Date.now() - startTime < testDuration) {
                 setTimeout(checkAudio, 100); // Check every 100ms
             } else {
-                console.log('🎤 Microphone test completed');
-                console.log(`📊 Results: Max level: ${maxLevel.toFixed(3)}, Average: ${avgLevel.toFixed(3)}`);
+                console.log('Microphone test completed');
+                console.log(`Results: Max level: ${maxLevel.toFixed(3)}, Average: ${avgLevel.toFixed(3)}`);
                 
                 if (maxLevel < 0.01) {
-                    console.log('⚠️  Very low audio levels detected. Try:');
+                    console.log('  Very low audio levels detected. Try:');
                     console.log('   - Speaking louder');
                     console.log('   - Checking microphone permissions');
                     console.log('   - Adjusting system microphone volume');
                 } else if (maxLevel > 0.1) {
-                    console.log('✅ Good audio levels detected');
+                    console.log('Good audio levels detected');
                 } else {
-                    console.log('🔸 Low but detectable audio levels');
+                    console.log('Low but detectable audio levels');
                 }
                 
                 // Cleanup
@@ -732,13 +732,13 @@ export function testMicrophone() {
             }
         }
         
-        console.log('🎤 Speak now for 5 seconds...');
+        console.log('Speak now for 5 seconds...');
         checkAudio();
         
     })
     .catch(error => {
-        console.error('❌ Microphone test failed:', error);
-        console.log('💡 Possible solutions:');
+        console.error(' Microphone test failed:', error);
+        console.log('Possible solutions:');
         console.log('   - Grant microphone permissions');
         console.log('   - Check if another app is using the microphone');
         console.log('   - Try refreshing the page');
@@ -747,7 +747,7 @@ export function testMicrophone() {
 
 // Quick fix: Auto-switch to browser speech if microphone is silent
 export function enableAutoFallback() {
-    console.log('🔄 Enabling auto-fallback from silent microphone to browser speech');
+    console.log('Enabling auto-fallback from silent microphone to browser speech');
     
     // Monitor for silent audio and auto-switch
     let silentChunkCount = 0;
@@ -790,13 +790,13 @@ export async function troubleshootMicrophone() {
     try {
         // Step 1: Check if getUserMedia is available
         if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-            console.error('❌ getUserMedia not supported');
+            console.error(' getUserMedia not supported');
             showToast('Your browser doesn\'t support microphone access', 'error');
             return;
         }
         
         // Step 2: Get list of audio input devices
-        console.log('📋 Checking available audio devices...');
+        console.log('Checking available audio devices...');
         const devices = await navigator.mediaDevices.enumerateDevices();
         const audioInputs = devices.filter(device => device.kind === 'audioinput');
         
@@ -806,7 +806,7 @@ export async function troubleshootMicrophone() {
         });
         
         if (audioInputs.length === 0) {
-            console.error('❌ No audio input devices found');
+            console.error(' No audio input devices found');
             showToast('No microphones detected', 'error');
             return;
         }
@@ -852,7 +852,7 @@ export async function troubleshootMicrophone() {
                         console.log(`  Result: Max level ${maxLevel.toFixed(4)}`);
                         
                         if (maxLevel > 0.01) {
-                            console.log(`✅ Working microphone found with constraint ${i + 1}!`);
+                            console.log(`Working microphone found with constraint ${i + 1}!`);
                             showToast(`Working microphone found! Max level: ${maxLevel.toFixed(3)}`, 'success');
                             
                             // Clean up and use this constraint
@@ -863,7 +863,7 @@ export async function troubleshootMicrophone() {
                             appState.workingAudioConstraint = constraints[i];
                             return;
                         } else {
-                            console.log(`  ⚠️ Silent with constraint ${i + 1}`);
+                            console.log(`Silent with constraint ${i + 1}`);
                         }
                         
                         // Clean up
@@ -875,23 +875,23 @@ export async function troubleshootMicrophone() {
                 await new Promise(resolve => setTimeout(resolve, 2100)); // Wait for test to complete
                 
             } catch (error) {
-                console.log(`  ❌ Failed with constraint ${i + 1}:`, error.message);
+                console.log(`Failed with constraint ${i + 1}:`, error.message);
             }
         }
         
         // If we get here, no working microphone was found
-        console.log('❌ No working microphone configuration found');
+        console.log(' No working microphone configuration found');
         showToast('Microphone troubleshooting complete. Check console for details.', 'warning');
         
         // Suggest browser speech recognition
-        console.log('💡 Recommendation: Use browser speech recognition instead');
+        console.log('Recommendation: Use browser speech recognition instead');
         showToast('Switching to browser speech recognition...', 'info');
         setTimeout(() => {
             enableBrowserOnlyMode();
         }, 2000);
         
     } catch (error) {
-        console.error('❌ Microphone troubleshooting failed:', error);
+        console.error('Microphone troubleshooting failed:', error);
         showToast('Microphone troubleshooting failed. Using browser speech.', 'error');
         setTimeout(() => {
             enableBrowserOnlyMode();
