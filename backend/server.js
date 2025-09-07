@@ -5,6 +5,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { getGeminiSummary } from './aiSummary.js';
 import rateLimit from 'express-rate-limit';
+import helmet from 'helmet';
 
 dotenv.config();
 
@@ -33,6 +34,7 @@ app.use(cors({
 }));
 
 app.use(express.json());
+app.use(helmet());
 
 // RATE LIMITING - MOVE THIS BEFORE ROUTES
 const createRateLimit = (windowMs, max, message) => 

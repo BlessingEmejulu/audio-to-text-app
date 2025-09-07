@@ -4,9 +4,9 @@ import { showToast } from './utils.js';
 
 // Bank details configuration
 const bankDetails = {
-    accountName: "Nneamaka Blessing Emejulu",
-    accountNumber: "2150313274",
-    bankName: "United Bank For Africa",
+    accountName: " ",
+    accountNumber: " ",
+    bankName: " ",
 };
 
 // Initialize support functionality

@@ -31,13 +31,6 @@ function initializeApp() {
     
     // Initialize support functionality
     initializeSupport();
-    
-    // Update with your actual bank details
-    updateBankDetails({
-        accountName: "Nneamaka Blessing Emejulu",
-        accountNumber: "2150313274",
-        bankName: "United Bank For Africa",
-    });
 }
 
 // Call initialization when DOM is loaded
