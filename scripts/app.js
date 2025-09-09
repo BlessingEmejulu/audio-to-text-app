@@ -5,6 +5,8 @@ import { setupEventListeners } from './events.js';
 import { setupMobileView } from './utils.js';
 import { registerServiceWorker, setupInstallPrompt, isPWA } from './pwa.js';
 import { initializeSupport, updateBankDetails } from './support.js';
+import { SmartSpeechRecognition } from './smart-speech.js';
+import { appendToEditor, updateInterimText } from './editor.js';
 
 // Main application initialization
 function init() {

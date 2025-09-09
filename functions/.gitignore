@@ -5,6 +5,10 @@ npm-debug.log*
 firebase-debug.log*
 firebase-debug.*.log*
 
+
+#google speech json
+google-credentials.json
+
 # Firebase cache
 .firebase/
 

@@ -1,14 +1,15 @@
 require('dotenv').config();
 
-const {setGlobalOptions} = require("firebase-functions");
-const functions = require('firebase-functions');
+const { setGlobalOptions } = require("firebase-functions/v2");
+const { onRequest } = require("firebase-functions/v2/https");
 const express = require('express');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
-
-const app = express();
+const speech = require('@google-cloud/speech');
 
 setGlobalOptions({ maxInstances: 10 });
+
+const app = express();
 
 // Fix CORS configuration - allow all origins for now
 app.use(cors({
@@ -21,7 +22,7 @@ app.use(cors({
 // Handle preflight requests
 app.options('*', cors());
 
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
 
 // Rate limiting
 const aiSummaryLimit = rateLimit({
@@ -51,7 +52,7 @@ app.post('/ai-summary', aiSummaryLimit, async (req, res) => {
         const { transcript } = req.body;
         
         if (!transcript || typeof transcript !== 'string') {
-            return res.status(400).json({ 
+            return res.status(400).json({
                 success: false, 
                 message: 'Transcript is required.' 
             });
@@ -93,24 +94,71 @@ ${transcript}`;
             .map(paragraph => `<p>${paragraph.trim().replace(/\n/g, '<br>')}</p>`)
             .join('');
         
-        res.json({ 
+        res.json({
             success: true, 
             summary: formattedSummary 
         });
         
     } catch (error) {
         console.error('AI Summary Error:', error);
-        res.status(500).json({ 
+        res.status(500).json({
             success: false, 
             message: 'Failed to generate summary: ' + error.message 
         });
     }
 });
 
+app.post('/speech-recognize', async (req, res) => {
+    try {
+        const speechClient = new speech.SpeechClient();
+        const { audioData, config } = req.body;
+
+        if (!audioData || !config) {
+            return res.status(400).json({ success: false, message: 'Invalid request body' });
+        }
+
+        const request = {
+            audio: {
+                content: audioData,
+            },
+            config: {
+                encoding: config.encoding || 'LINEAR16',
+                sampleRateHertz: config.sampleRateHertz || 16000,
+                languageCode: config.languageCode || 'en-US',
+            },
+        };
+
+        const [response] = await speechClient.recognize(request);
+        const transcription = response.results
+            .map(result => result.alternatives[0].transcript)
+            .join('\n');
+        const confidence = response.results.length > 0 ? response.results[0].alternatives[0].confidence : 0;
+
+        res.json({
+            success: true,
+            transcript: transcription,
+            confidence: confidence,
+        });
+
+    } catch (error) {
+        console.error('Speech-to-Text Error:', error);
+        res.status(500).json({ success: false, message: 'Failed to process audio.', fallbackToBrowser: true });
+    }
+});
+
+app.get('/ping', (req, res) => {
+    res.json({ success: true, message: 'pong' });
+});
+
+app.get('/speech-test', (req, res) => {
+    res.json({ success: true, available: true });
+});
+
+
 // Health check endpoint
 app.get('/health', (req, res) => {
-    res.json({ 
-        status: 'OK', 
+    res.json({
+        status: 'OK',
         timestamp: new Date().toISOString(),
         service: 'Firebase Functions',
         hasApiKey: !!(process.env.GEMINI_API_KEY)
@@ -118,4 +166,4 @@ app.get('/health', (req, res) => {
 });
 
 // Export the Express app as Firebase Functions
-exports.api = functions.https.onRequest(app);
+exports.api = onRequest(app);
