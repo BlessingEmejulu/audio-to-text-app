@@ -40,9 +40,15 @@ export function checkSpeechRecognitionSupport() {
         }
         
         // Append to editor
-        if (finalTranscript) {
-            console.log('Adding final transcript to editor:', finalTranscript);
-            appendToEditor(finalTranscript);
+        if (finalTranscript.trim()) {
+            const newFinalTranscript = finalTranscript.trim();
+            if (newFinalTranscript !== appState.lastFinalTranscript) {
+                console.log('Adding final transcript to editor:', newFinalTranscript);
+                appendToEditor(newFinalTranscript);
+                appState.lastFinalTranscript = newFinalTranscript;
+            } else {
+                console.log('Duplicate final transcript detected:', newFinalTranscript);
+            }
         }
         
         // Show interim results
