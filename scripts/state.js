@@ -16,7 +16,8 @@ const appState = {
     // Audio processing properties
     audioContext: null,
     processor: null,
-    source: null
+    source: null,
+    lastFinalTranscript: ''
 };
 
 export default appState;
