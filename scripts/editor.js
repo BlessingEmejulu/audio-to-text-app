@@ -190,3 +190,14 @@ export function copySummary() {
         .then(() => showToast('Summary copied to clipboard', 'success'))
         .catch(() => showToast('Failed to copy summary', 'error'));
 }
+
+export function updateInterimText(text) {
+    // Look for an interim text element in your HTML
+    const interimElement = document.getElementById('interim-text');
+    if (interimElement) {
+        interimElement.textContent = text;
+        interimElement.style.display = text ? 'block' : 'none';
+    } else {
+        console.log('Interim text:', text); // Fallback logging
+    }
+}

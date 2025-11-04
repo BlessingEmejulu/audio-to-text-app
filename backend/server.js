@@ -499,7 +499,7 @@ process.on('SIGINT', () => {
   // Close WebSocket server
   wss.close(() => {
     console.log('WebSocket server closed');
-  });
+  });  
   
   // Close HTTP server
   process.exit(0);
