@@ -112,9 +112,13 @@ export class SmartSpeechRecognition {
             
             // Add final results to editor
             if (finalTranscript.trim()) {
-                console.log('📝 Browser speech result:', finalTranscript);
-                updateInterimText(""); // Clear interim text
-                appendToEditor(finalTranscript.trim());
+                const newFinalTranscript = finalTranscript.trim();
+                if (newFinalTranscript !== appState.lastFinalTranscript) {
+                    console.log('📝 Browser speech result:', newFinalTranscript);
+                    updateInterimText(""); // Clear interim text
+                    appendToEditor(newFinalTranscript);
+                    appState.lastFinalTranscript = newFinalTranscript;
+                }
             }
         };
         
