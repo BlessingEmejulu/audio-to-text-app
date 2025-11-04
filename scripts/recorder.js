@@ -54,10 +54,6 @@ export function checkSpeechRecognitionSupport() {
         if (event.error === 'no-speech') {
             console.log('No speech detected, will restart recognition...');
             appState.recognitionActive = false;
-            // For no-speech errors, restart after a brief delay
-            if (appState.isRecording) {
-                restartBrowserRecognition();
-            }
         } else {
             console.log('Stopping recognition due to error:', event.error);
             appState.recognitionActive = false;
@@ -150,9 +146,12 @@ function handleGoogleSpeechMessage(data) {
         case 'transcript':
             console.log('Processing transcript:', data.transcript, 'isFinal:', data.isFinal);
             if (data.isFinal && data.transcript.trim()) {
-                console.log('Appending final transcript to editor:', data.transcript.trim());
-                appendToEditor(data.transcript.trim());
-                console.log('Final transcript:', data.transcript);
+                if (data.transcript.trim() !== appState.lastFinalTranscript) {
+                    console.log('Appending final transcript to editor:', data.transcript.trim());
+                    appendToEditor(data.transcript.trim());
+                    appState.lastFinalTranscript = data.transcript.trim();
+                    console.log('Final transcript:', data.transcript);
+                }
             } else if (data.transcript.trim()) {
                 console.log('Showing interim results:', data.transcript);
                 showInterimResults(data.transcript);
@@ -285,6 +284,7 @@ function testBrowserSpeechStability() {
 window.testBrowserSpeechStability = testBrowserSpeechStability;
 
 async function startRecording() {
+    appState.lastFinalTranscript = '';
     try {
         console.log('Starting recording...');
         console.log('useGoogleSpeech:', appState.useGoogleSpeech);
@@ -901,3 +901,8 @@ export async function troubleshootMicrophone() {
 
 // Make available globally
 window.troubleshootMicrophone = troubleshootMicrophone;
+
+export const __testonly__ = {
+    restartBrowserRecognition,
+    handleGoogleSpeechMessage
+};
